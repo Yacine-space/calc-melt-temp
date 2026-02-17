@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analyseur de Sequences d'ADN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function clearTextarea() {
+            document.getElementById("sequence").value = "";
+        }
+        function erreur(){
+            const sequence = document.getElementById("sequence").value.toUpperCase().trim()
+            const ok = /^[ACTG]*$/.test(sequence)
+            const supp_erreur = document.getElementById('message_erreur')
+            if (supp_erreur) supp_erreur.remove()
+            if (!ok){
+                event.preventDefault()
+                const erreur = document.createElement("erreur")
+                erreur.textContent = "Votre séquence doit contenir uniquement (A, C, T, G) !"
+                erreur.id ="message_erreur"
+                document.getElementsByName("formulaire")[0].appendChild(erreur)
+            }
+
+            
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="card">
+            <form name="formulaire" method="POST" enctype="multipart/form-data">
+                <h1>Calculateur de temperature de fusion (Tm)</h1>
+
+                <h2>Option 1 : Entrer une sequence</h2>
+                <textarea id="sequence" name="sequence" rows="4" cols="50" placeholder="Entrez une sequence ADN (A, T, G, C uniquement)"></textarea>
+                <button class="clear_btn" type="button" onclick="clearTextarea()">Effacer</button>
+
+                <h2>Option 2 : Importer un fichier FASTA</h2>
+                <input type="file" name="file" accept=".fasta,.fa,.txt">
+
+                <p>
+                    Conc Na+
+                    <input class="conc_na" type="number" name="conc_na" step="0.1" min="0.1" value="50">
+                    mM
+                </p>
+
+                <button class="calc_btn" type="submit" onclick="erreur(event)">Calculer</button>
+            </form>
+        </div>
+
+        <div class="resultat">
+            {% if resultat %}
+                <h3><strong>Resultats</strong></h3>
+                <ul>
+                    <li><strong>Sequence:</strong> 5'-{{ resultat.sequence_colored | safe }}-3'</li>
+                    <li><strong>Complement:</strong> 5'-{{ resultat.complement_colored | safe }}-3'</li>
+                    <li><strong>Longueur:</strong> {{ resultat.longueur_seq }}</li>
+                    <li><strong>%GC:</strong> {{ resultat.pourcentage_GC }}%</li>
+                    <li><strong>[Na<sup>+</sup>]:</strong> {{ resultat.conc_na }} mM</li>
+                    <li><strong>Tm:</strong> {{ resultat.Tm_basic }}°C (basic), {{ resultat.Tm_adjusted }}°C (Salt adjusted) </li>
+                    <li><strong>Température d'hybridation:</strong> {{ resultat.temperature_hybridation }}°C</li>
+    
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

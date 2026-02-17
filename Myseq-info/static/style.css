@@ -1,0 +1,113 @@
+body{
+    background-color:#eff1f5;
+    color: #333 ;
+    font-family: sans-serif;
+}
+h1{
+    font-size: 30px;
+    text-align: center;
+    font-family: sans-serif;
+}
+h2{
+    font-family: sans-serif;
+    font-size: 18px;
+}
+h3{
+    font-family: sans-serif;
+    font-size: 25px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+
+}
+#card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #E9E9E9;
+    padding: 10px 50px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+.form_na{
+    padding-left: 20px;
+}
+.conc_na{
+    width: 40px;
+}
+.clear_btn{
+    padding: 5px 10px;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 5px;
+}
+.calc_btn{
+    margin-top: auto;
+    margin-left: auto;
+    background-color: #f8a100;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.calc_btn:hover{
+    background-color: #e99e14;
+}
+#message_erreur{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(241, 78, 78, .6);
+    border-radius: 12px;
+    text-align: center  ;
+}
+
+ul{
+    list-style : none;
+    padding : 0px 0px;
+    border: solid 1.5px #DDD;
+    border-radius: 12px;
+}
+ul li{
+    padding: 10px 10px;
+    border-bottom: solid 1.5px #DDD;
+    overflow-wrap: anywhere;
+}
+ul li:last-child{
+    border-bottom: none;
+}
+.resultat{
+    width: 100vh;
+}
+.base{
+    font-weight: bold;
+}
+.A {
+    color: red;
+}
+.T{
+    color: green;
+}
+.G{
+    color: blue;
+}
+.C{
+    color: orange;
+}
